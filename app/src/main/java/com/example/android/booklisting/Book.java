@@ -1,31 +1,31 @@
 package com.example.android.booklisting;
 
 public class Book {
-    private String mTitle;
-    private String mSubtitle;
-    private String mPublishedDate;
-    private String mPublisher;
+    public String title;
+    private String subtitle;
+    private String publishedDate;
+    private String publisher;
 
-    public Book(String title, String subtitle, String publishedDate, String publisher) {
-        mTitle = title;
-        mSubtitle = subtitle;
-        mPublishedDate = publishedDate;
-        mPublisher = publisher;
+    public Book(String mTitle, String mSubtitle, String mPublishedDate, String mPublisher) {
+        title = mTitle;
+        subtitle = mSubtitle;
+        publishedDate = mPublishedDate;
+        publisher = mPublisher;
     }
 
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     public String getSubtitle() {
-        return mSubtitle;
+        return subtitle;
     }
 
     public String getPublishedDate() {
-        return mPublishedDate;
+        return publishedDate;
     }
 
     public String getPublisher() {
-        return mPublisher;
+        return publisher;
     }
 }

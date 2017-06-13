@@ -18,15 +18,15 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class QueryUtils {
-    private static final String LOG_TAG = QueryUtils.class.getSimpleName();
+public final class Utils {
+    private static final String LOG_TAG = Utils.class.getSimpleName();
 
-    private QueryUtils() {
+    private Utils() {
 
     }
 
-    public static List<Book> fetchBookData(String requestUrl) {
-        Log.i(LOG_TAG, "TEST: fetchEarthquakeData() called ...");
+    public static Book fetchBookData(String requestUrl) {
+        Log.i(LOG_TAG, "TEST: fetchBookData() called ...");
         URL url = createUrl(requestUrl);
         String jsonRespone = null;
         try {
@@ -35,8 +35,8 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        List<Book> books = extractFeatureFromJson(jsonRespone);
-        return books;
+        Book book = extractFeatureFromJson(jsonRespone);
+        return book;
     }
 
     private static URL createUrl(String stringUrl) {
@@ -72,7 +72,7 @@ public final class QueryUtils {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving the book JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -98,30 +98,31 @@ public final class QueryUtils {
         return output.toString();
     }
 
-    private static List<Book> extractFeatureFromJson(String bookJSON) {
+    private static Book extractFeatureFromJson(String bookJSON) {
         if (TextUtils.isEmpty(bookJSON)) {
             return null;
         }
         List<Book> books = new ArrayList<>();
         try {
             JSONObject baseJsonResponse = new JSONObject(bookJSON);
-            JSONArray bookArray = baseJsonResponse.getJSONArray("features");
+            JSONArray bookArray = baseJsonResponse.getJSONArray("items");
 
             for (int i = 0; i < bookArray.length(); i++) {
                 JSONObject currentBook = bookArray.getJSONObject(i);
-                JSONObject properties = currentBook.getJSONObject("properties");
-                String title = properties.getString("title");
-                String subtitle = properties.getString("subtitle");
-                String publishedDate = properties.getString("published date");
-                String publisher = properties.getString("publisher");
+
+                JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
+                String title = volumeInfo.getString("title");
+                String subtitle = volumeInfo.getString("subtitle");
+                String publishedDate = volumeInfo.getString("publishedDate");
+                String publisher = volumeInfo.getString("publisher");
 
                 Book book = new Book(title, subtitle, publishedDate, publisher);
 
                 books.add(book);
             }
         } catch (JSONException e) {
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("Utils", "Problem parsing the book JSON results", e);
         }
-        return books;
+        return null;
     }
 }
