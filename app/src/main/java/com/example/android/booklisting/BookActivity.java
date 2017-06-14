@@ -18,7 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<Book>> {
+public class BookActivity extends AppCompatActivity implements LoaderCallbacks<List<Book>> {
     private TextView emptyStateTextView;
 
     private static final String USGS_REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=1";
