@@ -25,7 +25,7 @@ public final class Utils {
 
     }
 
-    public static Book fetchBookData(String requestUrl) {
+    public static List<Book> fetchBookData(String requestUrl) {
         Log.i(LOG_TAG, "TEST: fetchBookData() called ...");
         URL url = createUrl(requestUrl);
         String jsonRespone = null;
@@ -35,8 +35,8 @@ public final class Utils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        Book book = extractFeatureFromJson(jsonRespone);
-        return book;
+        List<Book> books = extractFeatureFromJson(jsonRespone);
+        return books;
     }
 
     private static URL createUrl(String stringUrl) {
@@ -98,7 +98,7 @@ public final class Utils {
         return output.toString();
     }
 
-    private static Book extractFeatureFromJson(String bookJSON) {
+    private static List<Book> extractFeatureFromJson(String bookJSON) {
         if (TextUtils.isEmpty(bookJSON)) {
             return null;
         }
