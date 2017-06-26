@@ -2,13 +2,13 @@ package com.example.android.booklisting;
 
 public class Book {
     public String title;
-    private String subtitle;
+    private String author;
     private String publishedDate;
     private String publisher;
 
-    public Book(String mTitle, String mSubtitle, String mPublishedDate, String mPublisher) {
+    public Book(String mTitle, String mAuthor, String mPublishedDate, String mPublisher) {
         title = mTitle;
-        subtitle = mSubtitle;
+        author = mAuthor;
         publishedDate = mPublishedDate;
         publisher = mPublisher;
     }
@@ -17,8 +17,8 @@ public class Book {
         return title;
     }
 
-    public String getSubtitle() {
-        return subtitle;
+    public String getAuthor() {
+        return author;
     }
 
     public String getPublishedDate() {

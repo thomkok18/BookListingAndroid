@@ -6,11 +6,11 @@ import android.content.Context;
 import java.util.List;
 
 public class BookLoader extends AsyncTaskLoader<List<Book>> {
-    private String url;
+    private String mUrl;
 
-    public BookLoader(Context context, String mUrl) {
+    public BookLoader(Context context, String url) {
         super(context);
-        url = mUrl;
+        mUrl = url;
     }
 
     protected void onStartLoading() {
@@ -18,10 +18,10 @@ public class BookLoader extends AsyncTaskLoader<List<Book>> {
     }
 
     public List<Book> loadInBackground() {
-        if (url == null) {
+        if (mUrl == null) {
             return null;
         }
-        List<Book> books = Utils.fetchBookData(url);
+        List<Book> books = Utils.fetchBookData(mUrl);
         return books;
     }
 }

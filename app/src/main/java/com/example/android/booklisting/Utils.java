@@ -95,6 +95,7 @@ public final class Utils {
                 line = reader.readLine();
             }
         }
+        Log.i(LOG_TAG, output.toString());
         return output.toString();
     }
 
@@ -109,20 +110,26 @@ public final class Utils {
 
             for (int i = 0; i < bookArray.length(); i++) {
                 JSONObject currentBook = bookArray.getJSONObject(i);
-
                 JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
-                String title = volumeInfo.getString("title");
-                String subtitle = volumeInfo.getString("subtitle");
-                String publishedDate = volumeInfo.getString("publishedDate");
-                String publisher = volumeInfo.getString("publisher");
 
-                Book book = new Book(title, subtitle, publishedDate, publisher);
+                String title = volumeInfo.getString("title");
+//                JSONArray authArray = volumeInfo.getJSONArray("authors");
+//                String authors = volumeInfo.getString("authors");
+                String publisher = volumeInfo.getString("publisher");
+                String publishedDate = "";
+                if (volumeInfo.has("publishedDate")) {
+                    publishedDate = volumeInfo.getString("publishedDate");
+                }
+
+
+                Book book = new Book(title, "", publisher, publishedDate);
 
                 books.add(book);
+                Log.i("Book", book.getTitle());
             }
         } catch (JSONException e) {
             Log.e("Utils", "Problem parsing the book JSON results", e);
         }
-        return null;
+        return books;
     }
 }

@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import static android.R.attr.author;
+
 public class BookAdapter extends ArrayAdapter<Book> {
 
     public BookAdapter(Context context, List<Book> books) {
@@ -24,7 +26,7 @@ public class BookAdapter extends ArrayAdapter<Book> {
         }
 
         String title = null;
-        String subtitle = null;
+        String authors = null;
         Book currentBook = getItem(position);
 
         // Find the TextView with view ID location
@@ -33,26 +35,26 @@ public class BookAdapter extends ArrayAdapter<Book> {
         primaryLocationView.setText(title);
 
         // Find the TextView with view ID location offset
-        TextView locationOffsetView = (TextView) listItemView.findViewById(R.id.subtitle);
+        TextView locationOffsetView = (TextView) listItemView.findViewById(R.id.authors);
         // Display the location offset of the current earthquake in that TextView
-        locationOffsetView.setText(subtitle);
+        locationOffsetView.setText(authors);
 
         // Create a new Date object from the time in milliseconds of the earthquake
-        Date dateObject = new Date(currentBook.getPublishedDate());
+        //Date dateObject = new Date(currentBook.getPublishedDate());
 
         // Find the TextView with view ID date
         TextView dateView = (TextView) listItemView.findViewById(R.id.publishedDate);
         // Format the date string (i.e. "Mar 3, 1984")
-        String formattedDate = formatDate(dateObject);
+//        String formattedDate = formatDate(dateObject);
         // Display the date of the current earthquake in that TextView
-        dateView.setText(formattedDate);
+        dateView.setText("TO DO");
 
         // Find the TextView with view ID time
-        TextView timeView = (TextView) listItemView.findViewById(R.id.time);
+//        TextView timeView = (TextView) listItemView.findViewById(R.id.time);
         // Format the time string (i.e. "4:30PM")
-        String formattedTime = formatTime(dateObject);
+//        String formattedTime = formatTime(dateObject);
         // Display the time of the current earthquake in that TextView
-        timeView.setText(formattedTime);
+//        timeView.setText("TO DO");
 
         return listItemView;
     }

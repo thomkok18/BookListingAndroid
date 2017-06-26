@@ -10,6 +10,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -21,7 +22,7 @@ import java.util.List;
 public class BookActivity extends AppCompatActivity implements LoaderCallbacks<List<Book>> {
     private TextView emptyStateTextView;
 
-    private static final String USGS_REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=1";
+    private static final String USGS_REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=10";
 
     private static final int BOOK_LOADER_ID = 1;
 
@@ -40,16 +41,16 @@ public class BookActivity extends AppCompatActivity implements LoaderCallbacks<L
         bookListView.setAdapter(adapter);
 
         bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-             @Override
-             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                 Book currentBook = adapter.getItem(position);
-                 Uri bookPublisher = Uri.parse(currentBook.getPublisher());
-                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, bookPublisher);
-                 startActivity(websiteIntent);
-             }
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Book currentBook = adapter.getItem(position);
+                Uri bookPublisher = Uri.parse(currentBook.getPublisher());
+                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, bookPublisher);
+                startActivity(websiteIntent);
+            }
         });
 
-        ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
@@ -72,6 +73,7 @@ public class BookActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     @Override
     public void onLoadFinished(Loader<List<Book>> loader, List<Book> books) {
+        Log.i("BookActivity", String.valueOf(books.size()));
         View loadingIndicator = findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
 
@@ -79,6 +81,8 @@ public class BookActivity extends AppCompatActivity implements LoaderCallbacks<L
         adapter.clear();
 
         if (books != null && !books.isEmpty()) {
+            Log.i("BookActivity", "books available");
+            emptyStateTextView.setVisibility(View.GONE);
             adapter.addAll(books);
         }
     }

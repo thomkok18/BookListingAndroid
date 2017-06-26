@@ -29,7 +29,7 @@
                 tools:text="title" />
 
             <TextView
-                android:id="@+id/subtitle"
+                android:id="@+id/authors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -38,7 +38,7 @@
                 android:textAllCaps="true"
                 android:textColor="@color/subtitle"
                 android:textSize="12sp"
-                tools:text="subtitle" />
+                tools:text="authors" />
 
         </LinearLayout>
 
