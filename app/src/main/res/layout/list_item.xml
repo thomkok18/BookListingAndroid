@@ -29,13 +29,12 @@
                 tools:text="title" />
 
             <TextView
-                android:id="@+id/authors"
+                android:id="@+id/subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:fontFamily="sans-serif-medium"
                 android:maxLines="1"
-                android:textAllCaps="true"
                 android:textColor="@color/subtitle"
                 android:textSize="12sp"
                 tools:text="authors" />

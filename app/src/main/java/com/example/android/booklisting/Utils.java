@@ -113,8 +113,7 @@ public final class Utils {
                 JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
 
                 String title = volumeInfo.getString("title");
-//                JSONArray authArray = volumeInfo.getJSONArray("authors");
-//                String authors = volumeInfo.getString("authors");
+                String subtitle = volumeInfo.getString("authors");
                 String publisher = volumeInfo.getString("publisher");
                 String publishedDate = "";
                 if (volumeInfo.has("publishedDate")) {
@@ -122,7 +121,7 @@ public final class Utils {
                 }
 
 
-                Book book = new Book(title, "", publisher, publishedDate);
+                Book book = new Book(title, subtitle, publisher, publishedDate);
 
                 books.add(book);
                 Log.i("Book", book.getTitle());
