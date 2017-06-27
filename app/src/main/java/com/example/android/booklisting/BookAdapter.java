@@ -16,14 +16,18 @@ public class BookAdapter extends ArrayAdapter<Book> {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
+
+        Book book = getItem(position);
+
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
-        String title = null;
-        String subtitle = null;
-        String date = null;
+        String title = book.getTitle();
+        String subtitle = book.getSubtitle();
+        String date = book.getPublishedDate();
+        String publisher = book.getPublisher();
 
         // Find the TextView with view ID location
         TextView primaryLocationView = (TextView) listItemView.findViewById(R.id.title);
@@ -35,13 +39,15 @@ public class BookAdapter extends ArrayAdapter<Book> {
         // Display the location offset of the current earthquake in that TextView
         subtitleView.setText(subtitle);
 
-        // Create a new Date object from the time in milliseconds of the earthquake
-        //Date dateObject = new Date(currentBook.getPublishedDate());
-
         // Find the TextView with view ID date
         TextView dateView = (TextView) listItemView.findViewById(R.id.publishedDate);
         // Display the date of the current earthquake in that TextView
         dateView.setText(date);
+
+        // Find the TextView with view ID date
+        TextView publisherView = (TextView) listItemView.findViewById(R.id.publisher);
+        // Display the date of the current earthquake in that TextView
+        publisherView.setText(publisher);
 
         return listItemView;
     }
