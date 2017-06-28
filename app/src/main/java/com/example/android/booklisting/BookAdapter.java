@@ -30,9 +30,9 @@ public class BookAdapter extends ArrayAdapter<Book> {
         String publisher = book.getPublisher();
 
         // Find the TextView with view ID location
-        TextView primaryLocationView = (TextView) listItemView.findViewById(R.id.title);
+        TextView titleView = (TextView) listItemView.findViewById(R.id.title);
         // Display the location of the current earthquake in that TextView
-        primaryLocationView.setText(title);
+        titleView.setText(title);
 
         // Find the TextView with view ID location offset
         TextView subtitleView = (TextView) listItemView.findViewById(R.id.subtitle);
