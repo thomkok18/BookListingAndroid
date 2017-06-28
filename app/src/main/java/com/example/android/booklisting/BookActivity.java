@@ -44,7 +44,7 @@ public class BookActivity extends AppCompatActivity implements LoaderCallbacks<L
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Book currentBook = adapter.getItem(position);
-                Uri bookPublisher = Uri.parse(currentBook.getPublisher());
+                Uri bookPublisher = Uri.parse(currentBook.getLink());
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, bookPublisher);
                 startActivity(websiteIntent);
             }

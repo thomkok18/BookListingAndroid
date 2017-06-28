@@ -119,9 +119,10 @@ public final class Utils {
                 if (volumeInfo.has("publishedDate")) {
                     publishedDate = volumeInfo.getString("publishedDate");
                 }
+                String previewLink = volumeInfo.getString("previewLink");
 
 
-                Book book = new Book(title, subtitle, publisher, publishedDate);
+                Book book = new Book(title, subtitle, publisher, publishedDate, previewLink);
 
                 books.add(book);
                 Log.i("Book", book.getTitle());

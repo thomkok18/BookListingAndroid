@@ -5,12 +5,14 @@ public class Book {
     private String subtitle;
     private String publishedDate;
     private String publisher;
+    private String link;
 
-    public Book(String mTitle, String mSubtitle, String mPublishedDate, String mPublisher) {
+    public Book(String mTitle, String mSubtitle, String mPublishedDate, String mPublisher, String mLink) {
         title = mTitle;
         subtitle = mSubtitle;
         publishedDate = mPublishedDate;
         publisher = mPublisher;
+        link = mLink;
     }
 
     public String getTitle() {
@@ -27,5 +29,9 @@ public class Book {
 
     public String getPublisher() {
         return publisher;
+    }
+
+    public String getLink() {
+        return link;
     }
 }
