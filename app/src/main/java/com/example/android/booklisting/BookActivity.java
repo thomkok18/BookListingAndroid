@@ -22,7 +22,7 @@ import java.util.List;
 public class BookActivity extends AppCompatActivity implements LoaderCallbacks<List<Book>> {
     private TextView emptyStateTextView;
 
-    private static final String USGS_REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=1";
+    private static final String USGS_REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=20";
 
     private static final int BOOK_LOADER_ID = 1;
 
