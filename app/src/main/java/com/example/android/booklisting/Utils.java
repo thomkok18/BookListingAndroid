@@ -112,15 +112,23 @@ public final class Utils {
                 JSONObject currentBook = bookArray.getJSONObject(i);
                 JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
 
-                String title = volumeInfo.getString("title");
-                String subtitle = volumeInfo.getString("authors");
-                String publisher = volumeInfo.getString("publisher");
-                String publishedDate = "";
+                String title = "", subtitle = "", publisher = "", publishedDate = "", previewLink = "";
+
+                if (volumeInfo.has("title")) {
+                    title = volumeInfo.getString("title");
+                }
+                if (volumeInfo.has("subtitle")) {
+                    subtitle = volumeInfo.getString("subtitle");
+                }
+                if (volumeInfo.has("publisher")) {
+                    publisher = volumeInfo.getString("publisher");
+                }
                 if (volumeInfo.has("publishedDate")) {
                     publishedDate = volumeInfo.getString("publishedDate");
                 }
-                String previewLink = volumeInfo.getString("previewLink");
-
+                if (volumeInfo.has("previewLink")) {
+                    previewLink = volumeInfo.getString("previewLink");
+                }
 
                 Book book = new Book(title, subtitle, publisher, publishedDate, previewLink);
 
