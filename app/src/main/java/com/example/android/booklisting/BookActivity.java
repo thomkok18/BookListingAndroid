@@ -13,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,6 +29,9 @@ public class BookActivity extends AppCompatActivity implements LoaderCallbacks<L
     private static final int BOOK_LOADER_ID = 1;
 
     private BookAdapter adapter;
+
+    Button button;
+    EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,15 @@ public class BookActivity extends AppCompatActivity implements LoaderCallbacks<L
                 Uri bookPublisher = Uri.parse(currentBook.getLink());
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, bookPublisher);
                 startActivity(websiteIntent);
+            }
+        });
+
+        button = (Button) findViewById(R.id.button);
+        editText = (EditText) findViewById(R.id.editText);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Log.v("EditText", editText.getText().toString());
             }
         });
 
